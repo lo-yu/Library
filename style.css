@@ -1,0 +1,9 @@
+.book-card {
+    display: inline-block;
+    background-color: rgb(219, 218, 218);
+    height: 260px;
+    width: 200px;
+    border-radius: 5px;
+    padding: 0.8em;
+    margin: 1em;
+}

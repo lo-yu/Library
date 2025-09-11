@@ -5,23 +5,43 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function() {
-        return "The " + this.title + " by " + this.author + ", " + this.pages + " pages, " + this.read;
-    };
+    this.id = crypto.randomUUID(); 
 }
 
-const book1 = new Book('Harry Poter', 'JK Rowling', 338, 'read');
-const book2 = new Book('Naruto', 'Kishimoto', 1903, 'read');
-
-function addBookToLibrary(item){
-    const id = crypto.randomUUID();
-    myLibrary.push(item);
+function addBookToLibrary(title, author, pages, read){
+    const book = new Book(title, author, pages, read)
+    myLibrary.push(book);
+    console.log(book);
 }
 
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-console.log(myLibrary);
+const container = document.querySelector(".container");
 
-for( i = 0; i < myLibrary.length; i++ ){
-    console.log(myLibrary[i],i);
+function displayBooks(){
+    myLibrary.forEach((item) => {
+        //console.log(item);
+        const card = document.createElement("div");
+        card.classList.add("book-card");
+        card.innerHTML = `
+        Title:  ${item.title}<br><br>
+        Author: ${item.author}<br><br>
+        Pages:  ${item.pages}<br><br>
+        Read:   ${item.read}`;
+        container.appendChild(card);
+    })
 }
+
+addBookToLibrary("Harry Potter", "J.K Rowling", 236, "Read");
+addBookToLibrary("Naruto", "Masashi Kishimoto", 2391, "Read");
+addBookToLibrary("One piece", "Oda", 6891, "Read");
+displayBooks();
+
+
+/*myLibrary.forEach((item) => {
+    console.log(item);
+    const card = document.createElement("div");
+    card.classList.add("book-card");
+    card.innerHTML = `
+    Title: ${item.title}<br>
+    Author: ${item.author}`;
+    container.appendChild(card);
+})*/
