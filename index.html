@@ -7,7 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button type="button" class="addBook">Add Book</button>
     <div class="container"></div>
+    <dialog>
+        <form action="" method="dialog">
+            <fieldset>
+                <legend>Keep reading!</legend>
+                <div>
+                    <label for="title">Title</label>
+                    <div><input type="text" id="title" name="title"></div>
+                </div><br>
+                <div>
+                    <label for="author">Author</label>
+                    <div><input type="text" id="author" name="author"></div>
+                </div><br>
+                <div>
+                    <label for="pages">Pages</label>
+                    <div><input type="text" id="pages" name="pages"></div>
+                </div><br>
+                <div>
+                    <label for="read">Read</label>
+                    <div><input type="text" id="read" name="read"></div>
+                </div>
+                <div>
+                    <button type="submit" class="submit">Submit</button>
+                </div>
+            </fieldset>
+        </form>
+    </dialog>
     <script src="script.js"></script>
 </body>
 </html> 
