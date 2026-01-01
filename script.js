@@ -32,11 +32,11 @@ let displayBooks = function(){
     })
 }
 
-addBookToLibrary("Harry Potter", "J.K Rowling", 236, "Read");
+/*addBookToLibrary("Harry Potter", "J.K Rowling", 236, "Read");
 displayBooks();
 addBookToLibrary("Naruto", "Masashi Kishimoto", 2391, "Read");
 addBookToLibrary("One piece", "Oda", 6891, "Read");
-displayBooks();
+displayBooks();*/
 
 
 let addButton = document.querySelector(".addBook");
@@ -46,14 +46,27 @@ addButton.addEventListener("click", () => {
     dialog.showModal();
 })
 
-/*let submit = document.querySelector(".submit");
-let input = document.querySelector("input");
+let form = document.querySelector("#myForm");
+let button = document.querySelector(".submit");
 
 
-submit.addEventListener("click", createBook);
+form.addEventListener("submit", (event) => {
+    let titleInput = document.querySelector("#title").value;
+    let authorInput = document.querySelector("#author").value;
+    let pagesInput = document.querySelector("#pages").value;
+    let readInput = document.querySelector("#read").value;
 
-let createBook = function(){
-    addBookToLibrary();
+    addBookToLibrary(titleInput, authorInput, pagesInput, readInput);
     displayBooks();
-}*/
+    event.preventDefault();
+    dialog.close();
+    form.reset();
+    /*form.style.display = "none";*/
+
+
+})
+
+/*button.addEventListener("click", addBookToLibrary)*/
+
+
 
