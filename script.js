@@ -22,13 +22,16 @@ let displayBooks = function(){
         //console.log(item);
         const card = document.createElement("div");
         card.classList.add("book-card");
+        card.dataset.id = item.id;
         card.innerHTML = `
         Title:  ${item.title}<br><br>
         Author: ${item.author}<br><br>
         Pages:  ${item.pages}<br><br>
-        Read:   ${item.read}`;
+        Read:   ${item.read}<br><br>
+        <Button id="remove-button">Remove</Button>`;
         container.appendChild(card);
         }
+
     })
 }
 
@@ -63,10 +66,6 @@ form.addEventListener("submit", (event) => {
     form.reset();
     /*form.style.display = "none";*/
 
-
 })
 
 /*button.addEventListener("click", addBookToLibrary)*/
-
-
-
