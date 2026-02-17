@@ -28,7 +28,7 @@ let displayBooks = function(){
         Author: ${item.author}<br><br>
         Pages:  ${item.pages}<br><br>
         Read:   ${item.read}<br><br>
-        <Button id="remove-button">Remove</Button>`;
+        <Button class="remove-button">Remove</Button>`;
         container.appendChild(card);
         }
 
