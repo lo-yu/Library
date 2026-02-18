@@ -17,8 +17,8 @@ function addBookToLibrary(title, author, pages, read){
 const container = document.querySelector(".container");
 
 let displayBooks = function(){
+    container.innerHTML = "";
     myLibrary.forEach((item,i) => {
-        if(i == myLibrary.length-1){
         //console.log(item);
         const card = document.createElement("div");
         card.classList.add("book-card");
@@ -30,7 +30,7 @@ let displayBooks = function(){
         Read:   ${item.read}<br><br>
         <Button class="remove-button">Remove</Button>`;
         container.appendChild(card);
-        }
+        
 
     })
 }
@@ -69,3 +69,17 @@ form.addEventListener("submit", (event) => {
 })
 
 /*button.addEventListener("click", addBookToLibrary)*/
+
+container.addEventListener("click", (e) => {
+    if (e.target.classList.contains("remove-button")) {
+        const card = e.target.closest(".book-card");
+        const id = card.dataset.id;
+
+        const index = myLibrary.findIndex(book => book.id === id);
+        if (index !== -1) {
+            myLibrary.splice(index, 1);
+        }
+
+        displayBooks();
+    }
+});
