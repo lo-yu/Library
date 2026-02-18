@@ -8,6 +8,10 @@ function Book(title, author, pages, read) {
     this.id = crypto.randomUUID(); 
 }
 
+Book.prototype.toggleRead = function(){
+    this.read = !this.read;
+}
+
 function addBookToLibrary(title, author, pages, read){
     const book = new Book(title, author, pages, read)
     myLibrary.push(book);
@@ -24,11 +28,14 @@ let displayBooks = function(){
         card.classList.add("book-card");
         card.dataset.id = item.id;
         card.innerHTML = `
-        Title:  ${item.title}<br><br>
-        Author: ${item.author}<br><br>
-        Pages:  ${item.pages}<br><br>
-        Read:   ${item.read}<br><br>
-        <Button class="remove-button">Remove</Button>`;
+        <p><strong>Title:</strong> ${item.title}</p>
+        <p><strong>Author:</strong> ${item.author}</p>
+        <p><strong>Pages:</strong> ${item.pages}</p>
+        <p><strong>Read:</strong> ${item.read ? "Yes" : "No"}</p>
+        <button class="toggle-button">Toggle Read</button>
+        <button class="remove-button">Remove</button>
+        `;
+
         container.appendChild(card);
         
 
@@ -57,7 +64,7 @@ form.addEventListener("submit", (event) => {
     let titleInput = document.querySelector("#title").value;
     let authorInput = document.querySelector("#author").value;
     let pagesInput = document.querySelector("#pages").value;
-    let readInput = document.querySelector("#read").value;
+    let readInput = document.querySelector("#read").checked;
 
     addBookToLibrary(titleInput, authorInput, pagesInput, readInput);
     displayBooks();
@@ -71,6 +78,8 @@ form.addEventListener("submit", (event) => {
 /*button.addEventListener("click", addBookToLibrary)*/
 
 container.addEventListener("click", (e) => {
+
+    // REMOVE BUTTON
     if (e.target.classList.contains("remove-button")) {
         const card = e.target.closest(".book-card");
         const id = card.dataset.id;
@@ -78,6 +87,20 @@ container.addEventListener("click", (e) => {
         const index = myLibrary.findIndex(book => book.id === id);
         if (index !== -1) {
             myLibrary.splice(index, 1);
+        }
+
+        displayBooks();
+    }
+
+    // TOGGLE BUTTON
+    if (e.target.classList.contains("toggle-button")) {
+        const card = e.target.closest(".book-card");
+        const id = card.dataset.id;
+
+        const book = myLibrary.find(book => book.id === id);
+
+        if (book) {
+            book.toggleRead();
         }
 
         displayBooks();
